@@ -1,0 +1,108 @@
+import java.util.*;  
+
+class DrivingLicence {
+    public static boolean IsAlhpa(String statecode)
+    {
+       if (statecode == null) {
+            return false;
+        }
+        for (int i = 0; i < statecode.length(); i++)
+        {
+            char c = statecode.charAt(i);
+            if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+     public static boolean IsRegion(String region)
+    {
+        int rg = Integer.parseInt(region);
+        if(rg >=11 && rg <=50)
+        {
+             System.out.print("regionnn" + rg); 
+            return true;
+        }
+        else
+        {
+        System.out.print("regionsss" + rg); 
+        return false;
+        }
+    }
+    
+      public static boolean IsYear(String year)
+    {
+        int yr = Integer.parseInt(year);
+         if(yr >= 2011 && yr <=2021)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    public static boolean IsDl(String dlno)
+    {
+       String[] dl=dlno.split("(?<=\\G.{1})");
+       int count = 0;
+for(String d:dl){  
+int dln = Integer.parseInt(d); 
+if(count==1)
+{
+    if(dln == 3)
+    {
+    return false;
+    }
+    count = 0;
+}
+if(dln == 1)
+{
+    count = count + 1;
+}
+}  
+        return true;
+    }
+    
+    public static boolean IsExp(String year)
+    {
+        int yr = Integer.parseInt(year);
+        if(yr < 2016)
+        {
+            return true;
+        }
+            return false;
+    }
+
+    
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);  
+        String dl= sc.nextLine(); 
+        
+        String statecode = dl.substring(0,2);
+        String region = dl.substring(2,4);
+        String year = dl.substring(4,8);
+        String dlno  = dl.substring(8,15);
+        
+       
+        if(IsAlhpa(statecode) 
+        && IsRegion(region) 
+        && IsYear(year) 
+        && IsDl(dlno))
+        {
+        if(IsExp(year))
+        {
+        System.out.println("Valid Licence & Experience Driver" );  
+        }
+        else
+        {
+        System.out.println("Valid Licence" );  
+        }
+        }
+        else
+        {
+        System.out.println("Invalid Licence");
+        }
+        
+        System.out.println(statecode + "," + region + "," + year +"," +dlno);
+    }
+}
