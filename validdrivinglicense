@@ -45,23 +45,23 @@ class DrivingLicence {
     {
        String[] dl=dlno.split("(?<=\\G.{1})");
        int count = 0;
-for(String d:dl){  
-int dln = Integer.parseInt(d); 
-if(count==1)
-{
-    if(dln == 3)
-    {
-    return false;
-    }
-    count = 0;
-}
-if(dln == 1)
-{
-    count = count + 1;
-}
-}  
+        for(String d:dl){  
+        int dln = Integer.parseInt(d); 
+        if(count==1)
+        {
+         if(dln == 3)
+            {
+            return false;
+            }
+         count = 0;
+        }
+        if(dln == 1)
+        {
+         count = count + 1;
+        }
+        }  
         return true;
-    }
+        }
     
     public static boolean IsExp(String year)
     {
@@ -103,6 +103,6 @@ if(dln == 1)
         System.out.println("Invalid Licence");
         }
         
-        System.out.println(statecode + "," + region + "," + year +"," +dlno);
+        System.out.println("");
     }
 }
