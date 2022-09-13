@@ -21,12 +21,10 @@ class DrivingLicence {
         int rg = Integer.parseInt(region);
         if(rg >=11 && rg <=50)
         {
-             System.out.print("regionnn" + rg); 
             return true;
         }
         else
         {
-        System.out.print("regionsss" + rg); 
         return false;
         }
     }
@@ -102,7 +100,5 @@ class DrivingLicence {
         {
         System.out.println("Invalid Licence");
         }
-        
-        System.out.println("");
     }
 }
