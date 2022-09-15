@@ -1,0 +1,63 @@
+1) no return type and no arg / param
+import java.util.*;
+import java.time.*;
+interface Calculatable{
+ void print();
+}
+class DemoLambda{
+public static void main(String[] as){
+//no return type and no arg / param
+   Calculatable c=()->{System.out.println("Hello World");};
+   c.print();
+}
+}
+
+
+----------------------------
+
+2) no return type and Yes Arg / param
+import java.util.*;
+import java.time.*;
+interface Calculatable{
+public void Multiplyby2(int a);
+}
+class DemoLambda{
+public static void main(String[] as){
+//no return type and Yes Arg / param
+   Calculatable c=a->System.out.println("multiply by 2 value is : "+a*2);
+   c.Multiplyby2(10);
+}
+}
+---------------------------
+
+3) //return type and No Arg /param
+import java.util.*;
+import java.time.*;
+interface Calculatable{
+public int sum();
+}
+class DemoLambda{
+public static void main(String[] as){
+//return type and No Arg /param
+   Calculatable c=()->{return 10;};
+   System.out.println("10+0 = "+c.sum());
+}
+}
+-------------------------
+
+4) // return type and arg /param
+import java.util.*;
+import java.time.*;
+interface Calculatable{
+public int add(int a, int b);
+}
+class DemoLambda{
+public static void main(String[] as){
+// return type and arg /param
+   Calculatable c=(a,b)->a+b;
+   System.out.println("10+20 = "+c.add(10,20));
+   System.out.println("100+200 = "+c.add(100,200));
+   System.out.println("1000+2000 = "+c.add(1000,2000));
+  
+}
+}
