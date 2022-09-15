@@ -1,0 +1,67 @@
+import java.io.*;  
+import java.util.*;
+import java.time.*;
+import java.time.LocalDate;
+
+class Match implements Comparable<Match>{
+
+public int matchId;
+public String teamName1;
+public String teamName2;
+public LocalDate matchDate;
+public LocalTime matchTime;
+
+Match(int matchId,String team1, String team2, LocalDate matchDate, LocalTime matchTime){
+  this.matchId=matchId;
+  this.teamName1=team1;
+  this.teamName2=team2;
+  this.matchDate=matchDate;
+  this.matchTime=matchTime;
+}
+public LocalDate getMatchDate(){
+  return this.matchDate;
+}
+public int compareTo(Match m){
+  return this.matchDate.compareTo(m.getMatchDate());
+}
+public String toString(){
+ return "Team Name 1: "+this.teamName1+", Team Name 2: "+this.teamName2+", Date: "+this.matchDate+", Time: "+this.matchTime;
+}
+}
+class DemoActivity extends RuntimeException{
+public static void main(String[] as){
+  Scanner s=new Scanner(System.in);
+  ArrayList<Match> al=new ArrayList<Match>();
+  System.out.println("Enter the Number of Match Infor");
+  int n=s.nextInt();
+  for(int i=1;i<=n;i++)
+  {
+    System.out.println("Enter Match Id");
+    int mid=s.nextInt();
+    System.out.println("Enter Team 1");
+    String team1=s.next();
+    System.out.println("Enter Team 2");
+    String team2=s.next();
+    if(al.size()>0)
+    {
+    for(int j = 1;j<=al.size();j++)
+    {
+        if(al.get(j-1).teamName1.equals(team1) && al.get(j-1).teamName2.equals(team2))
+        {
+            throw new java.lang.RuntimeException("Team1 vs team2 match already exist");
+        }
+    }
+    }
+    System.out.println("Enter Match Date (yyyy-mm-dd)");
+   LocalDate ld=LocalDate.parse(s.next());
+    System.out.println("Enter Match Time (hh:mm:ss)");
+   LocalTime lt=LocalTime.parse(s.next());
+   Match m=new Match(mid,team1,team2,ld,lt);
+   al.add(m);
+
+  }
+  Collections.sort(al);
+  System.out.println("Sorted Order based on Date:"+al);
+  
+}
+}
