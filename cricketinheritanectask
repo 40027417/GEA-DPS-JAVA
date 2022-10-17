@@ -1,51 +1,99 @@
-class Match
-{
-    
-private int CurrentScore;
-private int Currentoverprogress;
-private int Targetscore;
+package demodb;
 
-public int getCurrentScore(){
-   return this.CurrentScore;
+import java.util.Scanner;
+
+class CricketMatch {
+
+	private int CurrentScore;
+	private int Currentoverprogress;
+	private int Targetscore;
+
+	public int getCurrentScore() {
+		return this.CurrentScore;
+	}
+
+	public void setCurrentScore(int CurrentScore) {
+		this.CurrentScore = CurrentScore;
+	}
+
+	public int getCurrentoverprogress() {
+		return this.Currentoverprogress;
+	}
+
+	public void setCurrentoverprogress(int Currentoverprogress) {
+		this.Currentoverprogress = Currentoverprogress;
+	}
+
+	public int getTargetscore() {
+		return this.Targetscore;
+	}
+
+	public void setTargetscore(int Targetscore) {
+		this.Targetscore = Targetscore;
+	}
+
+	public void displayinfo(int pruns, int pballs) {
+		System.out.println("Need " + pruns + " runs in " + pballs * 6 + " balls");
+	}
+
 }
 
-public void setCurrentScore(int CurrentScore){
-   this.CurrentScore=CurrentScore;
-}
+class Score extends CricketMatch {
+	public int ODIover = 50;
+	public int T20over = 20;
+	public int Testover = 180;
+	public int T10over = 10;
 
-public int getCurrentoverprogress(){
-   return this.Currentoverprogress;
-}
-
-public void setCurrentoverprogress(int Currentoverprogress){
-   this.Currentoverprogress=Currentoverprogress;
-}
-
-public int getTargetscore(){
-   return this.Targetscore;
-}
-
-public void setTargetscore(int Targetscore){
-   this.Targetscore=Targetscore;
-}
-
-public void displayinfo(int balls){
-   System.out.println("Need 50 runs in " +balls+ " balls");
-}
+	public int gettotalover(int matchtype) {
+		if (matchtype == 1) {
+			return ODIover;
+		}
+		if (matchtype == 2) {
+			return T20over;
+		}
+		if (matchtype == 3) {
+			return Testover;
+		}
+		if (matchtype == 4) {
+			return T10over;
+		}
+		return 0;
+	}
 
 }
 
-class Cricket extends Match{
-    
-    public static void main(String[] args) {
-        
-          System.out.println("Enter the match format");
-          System.out.println("1. ODI");
-          System.out.println("2. T20");
-          System.out.println("3. Test");
-          System.out.println("4. T10");
-          Match m1 = new Match();
-          m1.displayinfo(10);
-          
-    }
+public class Cricket {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Score sc = new Score();
+		String newline = System.lineSeparator();
+		System.out.println("Enter the match format" + newline + "1. ODI " + newline + "2. T20" + newline + "3. Test"
+				+ newline + "4. T10");
+		Scanner s = new Scanner(System.in);
+		int matchtype = s.nextInt();
+		int totalover = sc.gettotalover(matchtype);
+		System.out.println("Enter the Current score");
+		int cs = s.nextInt();
+		sc.setCurrentScore(cs);
+		System.out.println("Enter the current Over");
+		int co = s.nextInt();
+		if (co > totalover) {
+			s.close();
+			throw new java.lang.RuntimeException("Match " + matchtype + " contains max " + totalover + " overs only");
+		}
+		sc.setCurrentoverprogress(co);
+		System.out.println("Enter the Target Score");
+		int ts = s.nextInt();
+		sc.setTargetscore(ts);
+		int runrate;
+		int pendingover = totalover - sc.getCurrentoverprogress();
+		int pendingrun = sc.getTargetscore() - sc.getCurrentScore();
+		runrate = pendingrun / pendingover;
+		sc.displayinfo(pendingrun, pendingover);
+		System.out.println("Required Runrate: " + runrate);
+		s.close();
+
+	}
+
 }
