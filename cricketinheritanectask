@@ -1,0 +1,51 @@
+class Match
+{
+    
+private int CurrentScore;
+private int Currentoverprogress;
+private int Targetscore;
+
+public int getCurrentScore(){
+   return this.CurrentScore;
+}
+
+public void setCurrentScore(int CurrentScore){
+   this.CurrentScore=CurrentScore;
+}
+
+public int getCurrentoverprogress(){
+   return this.Currentoverprogress;
+}
+
+public void setCurrentoverprogress(int Currentoverprogress){
+   this.Currentoverprogress=Currentoverprogress;
+}
+
+public int getTargetscore(){
+   return this.Targetscore;
+}
+
+public void setTargetscore(int Targetscore){
+   this.Targetscore=Targetscore;
+}
+
+public void displayinfo(int balls){
+   System.out.println("Need 50 runs in " +balls+ " balls");
+}
+
+}
+
+class Cricket extends Match{
+    
+    public static void main(String[] args) {
+        
+          System.out.println("Enter the match format");
+          System.out.println("1. ODI");
+          System.out.println("2. T20");
+          System.out.println("3. Test");
+          System.out.println("4. T10");
+          Match m1 = new Match();
+          m1.displayinfo(10);
+          
+    }
+}
